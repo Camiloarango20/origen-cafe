@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" width="320" height="240" role="img">
+  <rect width="320" height="240" fill="#faf6f1"></rect>
+  <circle cx="196" cy="132" r="86" fill="#f0e6d9"></circle>
+  <ellipse cx="150" cy="206" rx="104" ry="12" fill="#4a2f1a" opacity="0.08"></ellipse>
+
+  <!-- cup behind the bag -->
+  <path d="M186 106h58v40a29 29 0 0 1-29 29h0a29 29 0 0 1-29-29z" fill="#f0e6d9" stroke="#4a2f1a" stroke-width="3" opacity="0.85"></path>
+  <path d="M244 116h12a19 19 0 0 1 0 38h-12" fill="none" stroke="#4a2f1a" stroke-width="6" opacity="0.85"></path>
+  <path d="M196 78c6-9 18-9 24 0M226 78c6-9 18-9 24 0" fill="none" stroke="#5b3a22" stroke-width="5" stroke-linecap="round" opacity="0.55"></path>
+
+  <!-- coffee bag -->
+  <rect x="96" y="98" width="88" height="98" rx="10" fill="#5b3a22"></rect>
+  <rect x="102" y="84" width="76" height="18" rx="7" fill="#3d2415"></rect>
+  <rect x="110" y="130" width="60" height="40" rx="6" fill="#f5e9d8" opacity="0.94"></rect>
+  <rect x="120" y="142" width="40" height="4" rx="2" fill="#3d2415" opacity="0.7"></rect>
+  <rect x="120" y="152" width="28" height="4" rx="2" fill="#3d2415" opacity="0.45"></rect>
+  <circle cx="140" cy="182" r="5" fill="#3f6fa8"></circle>
+
+  <!-- bean -->
+  <ellipse cx="66" cy="186" rx="20" ry="14" fill="#3d2415" transform="rotate(-22 66 186)"></ellipse>
+  <path d="M54 176c8 4 14 12 18 20" fill="none" stroke="#faf6f1" stroke-width="3" stroke-linecap="round" opacity="0.7"></path>
+</svg>

@@ -1,0 +1,83 @@
+---
+import { PROCESS_OPTIONS, REGION_OPTIONS, ROAST_OPTIONS } from '../lib/catalog-filters';
+
+/**
+ * Combinable catalog filters + free-text search (RF-002, CA-040, DD-12, DD-16).
+ *
+ * Static, labeled controls; the shared island reads them and updates the grid
+ * client-side. Without JavaScript the full catalog stays visible and usable.
+ * The search term combines with every filter axis and ignores accents/case.
+ */
+---
+
+<form
+  data-filters
+  class="mt-6 rounded-card border border-coffee-100 bg-white p-4"
+  aria-labelledby="filters-legend"
+>
+  <fieldset class="flex flex-col gap-4">
+    <legend id="filters-legend" class="text-base font-medium text-coffee-700">Buscar y filtrar catálogo</legend>
+
+    <div class="flex flex-col gap-1">
+      <label for="filter-search" class="text-sm font-medium text-coffee-700">Buscar</label>
+      <input
+        id="filter-search"
+        name="q"
+        type="search"
+        data-search
+        placeholder="Busca por nombre, notas, región, tueste o proceso…"
+        autocomplete="off"
+        enterkeyhint="search"
+        class="rounded border border-coffee-500/40 bg-coffee-50 px-3 py-2 text-sm text-coffee-900"
+      />
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div class="flex flex-col gap-1">
+        <label for="filter-region" class="text-sm font-medium text-coffee-700">Región</label>
+        <select
+          id="filter-region"
+          data-filter="region"
+          class="rounded border border-coffee-500/40 bg-coffee-50 px-3 py-2 text-sm text-coffee-900"
+        >
+          <option value="">Todas las regiones</option>
+          {REGION_OPTIONS.map((option) => <option value={option.value}>{option.label}</option>)}
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="filter-roast" class="text-sm font-medium text-coffee-700">Perfil de tueste</label>
+        <select
+          id="filter-roast"
+          data-filter="roast"
+          class="rounded border border-coffee-500/40 bg-coffee-50 px-3 py-2 text-sm text-coffee-900"
+        >
+          <option value="">Todos los tuestes</option>
+          {ROAST_OPTIONS.map((option) => <option value={option.value}>{option.label}</option>)}
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="filter-process" class="text-sm font-medium text-coffee-700">Método de proceso</label>
+        <select
+          id="filter-process"
+          data-filter="process"
+          class="rounded border border-coffee-500/40 bg-coffee-50 px-3 py-2 text-sm text-coffee-900"
+        >
+          <option value="">Todos los procesos</option>
+          {PROCESS_OPTIONS.map((option) => <option value={option.value}>{option.label}</option>)}
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <button
+        type="button"
+        data-filters-reset
+        class="rounded-md border border-coffee-700 px-3 py-2 text-sm font-medium text-coffee-700 hover:bg-coffee-100"
+      >
+        Limpiar filtros y búsqueda
+      </button>
+    </div>
+  </fieldset>
+</form>

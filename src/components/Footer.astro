@@ -1,0 +1,32 @@
+---
+import DemoNotice from './DemoNotice.astro';
+
+/** Site footer (RF-009, RF-010, DD-11). */
+const footerLinks = [
+  { href: '/#catalogo', label: 'Catálogo' },
+  { href: '/#origen', label: 'Origen' },
+  { href: '/#contacto', label: 'Contacto' },
+];
+---
+
+<footer class="mt-16 border-t border-coffee-100 bg-coffee-100/60">
+  <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-coffee-700">
+    <p class="font-display text-lg text-coffee-700">Origen Café</p>
+
+    <nav aria-label="Navegación del pie de página">
+      <ul class="flex flex-wrap gap-x-4 gap-y-1">
+        {footerLinks.map((link) => (
+          <li>
+            <a class="hover:underline" href={link.href}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <DemoNotice />
+
+    <p class="text-xs text-coffee-500">
+      Proyecto de demostración sin backend ni ventas reales. Los datos no se transmiten a ningún servidor.
+    </p>
+  </div>
+</footer>

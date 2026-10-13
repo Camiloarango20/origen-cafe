@@ -1,0 +1,40 @@
+---
+import DemoNotice from './DemoNotice.astro';
+
+/**
+ * Narrative "Origen" section (RF-007).
+ *
+ * The story is entirely fictitious and explicitly labeled as demo content
+ * (CA-018, RF-010).
+ */
+---
+
+<section id="origen" class="scroll-mt-20 border-y border-coffee-100 bg-coffee-100/40">
+  <div class="mx-auto flex max-w-3xl flex-col gap-4 px-4 py-12">
+    <h2 class="font-display text-2xl text-coffee-700 sm:text-3xl">Nuestro origen (demo)</h2>
+
+    <p class="text-coffee-700">
+      Esta sección cuenta una historia inventada para la demostración: regiones de fantasía, fincas
+      que no existen y rutas de comercio imaginarias. No afirma hechos reales sobre productores,
+      certificaciones ni precios.
+    </p>
+
+    <p class="text-coffee-700">
+      El objetivo del contenido es ilustrar cómo se vería un relato de origen en un sitio de café,
+      sin presentar información verificada. Cualquier parecido con la realidad es coincidencia.
+    </p>
+
+    <!-- Local, original SVG (DD-15); below the fold, so it is lazy-loaded. -->
+    <img
+      src="/images/origen.svg"
+      alt="Ilustración original de demostración: paisaje de una finca cafetera con plantas de café."
+      width="960"
+      height="260"
+      loading="lazy"
+      decoding="async"
+      class="h-auto w-full"
+    />
+
+    <DemoNotice />
+  </div>
+</section>

@@ -1,0 +1,31 @@
+---
+/**
+ * Reusable demonstration notice (DD-06, RF-010).
+ *
+ * Renders a visible statement that the commercial content is fictitious.
+ * `compact` is used for the microcopy shown next to prices (CA-043).
+ */
+interface Props {
+  /** Short price-focused message instead of the full notice. */
+  compact?: boolean;
+  /** Additional utility classes. */
+  class?: string;
+}
+
+const { compact = false, class: className = '' } = Astro.props;
+
+const message = compact
+  ? 'Precio ficticio de demostración.'
+  : 'Contenido de demostración: los productos, orígenes, notas y precios son ficticios y no representan datos reales. No se realiza ninguna compra real.';
+---
+
+<p
+  role="note"
+  class:list={[
+    'rounded-md border border-coffee-500/30 bg-coffee-100/70 text-coffee-700',
+    compact ? 'px-2 py-1 text-xs' : 'px-3 py-2 text-sm',
+    className,
+  ]}
+>
+  {message}
+</p>

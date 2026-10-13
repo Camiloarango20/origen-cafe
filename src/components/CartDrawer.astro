@@ -1,0 +1,63 @@
+---
+import DemoNotice from './DemoNotice.astro';
+
+/**
+ * Accessible cart drawer (RF-004, DD-09).
+ *
+ * Rendered on every route. Hidden by default; the shared island opens it,
+ * traps focus, closes on Escape, and returns focus to the trigger. The default
+ * slot receives the OrderSummary (totals + simulated order action).
+ */
+---
+
+<div
+  data-cart-drawer
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-label="Carrito de compras"
+  class="fixed inset-0 z-50"
+>
+  <div data-cart-overlay class="absolute inset-0 bg-coffee-900/50"></div>
+
+  <div class="absolute inset-y-0 right-0 flex w-full max-w-md flex-col bg-coffee-50 shadow-xl">
+    <div class="flex items-center justify-between gap-2 border-b border-coffee-100 px-4 py-3">
+      <h2 class="font-display text-lg text-coffee-700">Tu pedido</h2>
+      <button
+        type="button"
+        data-cart-close
+        aria-label="Cerrar carrito"
+        class="rounded-md border border-coffee-700 px-2 py-1 text-sm text-coffee-700 hover:bg-coffee-100"
+      >
+        Cerrar
+      </button>
+    </div>
+
+    <div data-cart-status role="status" aria-live="polite" class="sr-only"></div>
+
+    <div data-cart-content class="flex flex-1 flex-col overflow-y-auto px-4 py-3">
+      <p data-cart-empty class="rounded-card border border-dashed border-coffee-500/50 p-4 text-center text-coffee-700">
+        Tu carrito está vacío. Explora el catálogo y agrega productos de demostración.
+      </p>
+
+      <ul data-cart-items class="flex flex-col"></ul>
+
+      <div class="mt-4 border-t border-coffee-100 pt-4">
+        <slot />
+      </div>
+    </div>
+
+    <div data-cart-confirmation hidden class="flex flex-1 flex-col gap-4 overflow-y-auto px-4 py-6">
+      <h3 class="font-display text-lg text-coffee-700">Pedido simulado confirmado</h3>
+      <p data-cart-confirmation-message class="text-coffee-700"></p>
+      <DemoNotice />
+      <button
+        type="button"
+        data-cart-confirmation-close
+        class="rounded-md bg-coffee-700 px-4 py-2 font-medium text-white hover:bg-coffee-900"
+      >
+        Cerrar confirmación
+      </button>
+    </div>
+  </div>
+</div>

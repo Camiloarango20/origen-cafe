@@ -1,0 +1,66 @@
+---
+/**
+ * Global site header (RF-009, DD-11).
+ * Static markup plus the cart trigger the shared island wires up (`[data-cart-open]`).
+ */
+const navItems = [
+  { href: '/#catalogo', label: 'Catálogo' },
+  { href: '/#origen', label: 'Origen' },
+  { href: '/#contacto', label: 'Contacto' },
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-coffee-100 bg-coffee-50/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3">
+    <a href="/" class="font-display text-lg font-semibold text-coffee-700 sm:text-xl">
+      Origen Café
+    </a>
+
+    <div class="flex items-center gap-2 sm:gap-4">
+      <nav aria-label="Navegación principal">
+        <ul class="flex items-center gap-1 text-xs sm:gap-3 sm:text-sm">
+          {navItems.map((item) => (
+            <li>
+              <a
+                class="rounded px-2 py-1 text-coffee-700 hover:bg-coffee-100 focus-visible:outline-2"
+                href={item.href}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <button
+        type="button"
+        data-cart-open
+        aria-label="Abrir carrito de compras"
+        class="inline-flex items-center gap-2 rounded-md border border-coffee-700 bg-coffee-700 px-3 py-2 text-sm font-medium text-white hover:bg-coffee-900"
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="9" cy="20" r="1.4"></circle>
+          <circle cx="18" cy="20" r="1.4"></circle>
+          <path d="M2.5 3h2.2l2.4 12.2a1.5 1.5 0 0 0 1.5 1.2h9.6a1.5 1.5 0 0 0 1.5-1.2l1.3-6.8H6"></path>
+        </svg>
+        <span class="hidden sm:inline">Carrito</span>
+        <span
+          data-cart-count
+          class="inline-flex min-w-6 items-center justify-center rounded-full bg-coffee-50 px-1.5 text-xs font-semibold text-coffee-900"
+        >
+          0
+        </span>
+      </button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,27 @@
+---
+import DemoNotice from './DemoNotice.astro';
+
+/**
+ * Order summary inside the cart drawer (RF-005, RF-006).
+ *
+ * Shows the demo total in COP and the "finalizar pedido" action. Totals are
+ * computed by the shared island from the cart store.
+ */
+---
+
+<div class="flex flex-col gap-3">
+  <div class="flex items-center justify-between text-base">
+    <span class="font-medium text-coffee-700">Total (demo)</span>
+    <span data-cart-total class="text-lg font-semibold text-coffee-900">$ 0</span>
+  </div>
+
+  <DemoNotice compact />
+
+  <button
+    type="button"
+    data-cart-checkout
+    class="rounded-md bg-accent px-4 py-2 font-medium text-white hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+  >
+    Finalizar pedido (demo)
+  </button>
+</div>

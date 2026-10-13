@@ -1,0 +1,97 @@
+---
+import DemoNotice from '../../components/DemoNotice.astro';
+import { cafes } from '../../data/cafes';
+import { processLabel, regionLabel, roastLabel } from '../../lib/catalog-filters';
+import { formatCop } from '../../lib/format';
+import Layout from '../../layouts/Layout.astro';
+
+/**
+ * Coffee detail route (RF-003, CA-041, DD-07).
+ *
+ * One static page per catalog entry via getStaticPaths. Unknown ids are not
+ * generated and resolve to the host's 404; a defensive guard rewrites to /404.
+ */
+export function getStaticPaths() {
+  return cafes.map((cafe) => ({
+    params: { id: cafe.id },
+    props: { cafe },
+  }));
+}
+
+const { cafe } = Astro.props;
+
+if (!cafe) {
+  return Astro.rewrite('/404');
+}
+---
+
+<Layout
+  title={`${cafe.name} — Origen Café`}
+  description={`Ficha de demostración de ${cafe.name}: región, tueste, proceso, notas de cata y precio ficticio en COP.`}
+>
+  <article class="mx-auto max-w-5xl px-4 py-10">
+    <p class="text-sm">
+      <a class="text-coffee-500 hover:underline" href="/#catalogo">← Volver al catálogo</a>
+    </p>
+
+    <div class="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div class="aspect-square overflow-hidden rounded-card bg-coffee-100">
+        <img
+          src={cafe.image ?? '/images/cafe-etiopia-yirgacheffe-demo.svg'}
+          alt={`Ilustración original de demostración de ${cafe.name}.`}
+          width="320"
+          height="240"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h1 class="font-display text-3xl text-coffee-700">{cafe.name}</h1>
+
+        <dl class="flex flex-wrap gap-x-4 gap-y-2 text-sm text-coffee-500">
+          <div class="flex gap-1">
+            <dt class="font-medium">Región:</dt>
+            <dd>{regionLabel(cafe.region)}</dd>
+          </div>
+          <div class="flex gap-1">
+            <dt class="font-medium">Tueste:</dt>
+            <dd>{roastLabel(cafe.roast)}</dd>
+          </div>
+          <div class="flex gap-1">
+            <dt class="font-medium">Proceso:</dt>
+            <dd>{processLabel(cafe.process)}</dd>
+          </div>
+        </dl>
+
+        <p class="text-coffee-700">{cafe.description}</p>
+
+        <div class="flex flex-col gap-2">
+          <h2 class="text-base font-medium text-coffee-700">Notas de cata (demo)</h2>
+          <ul class="flex flex-wrap gap-2">
+            {cafe.notes.map((note) => (
+              <li class="rounded-full border border-coffee-500/40 bg-coffee-100/70 px-3 py-1 text-sm text-coffee-700">
+                {note}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="flex flex-col gap-2 border-t border-coffee-100 pt-4">
+          <p class="text-2xl font-semibold text-coffee-900">{formatCop(cafe.priceCop)}</p>
+          <DemoNotice compact />
+          <button
+            type="button"
+            data-add-to-cart
+            data-cafe-id={cafe.id}
+            class="rounded-md bg-coffee-700 px-4 py-2 font-medium text-white hover:bg-coffee-900"
+          >
+            Agregar al pedido
+          </button>
+        </div>
+
+        <DemoNotice />
+      </div>
+    </div>
+  </article>
+</Layout>

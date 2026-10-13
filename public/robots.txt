@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Academic demo site (Origen Café). No pages are meant to be excluded.

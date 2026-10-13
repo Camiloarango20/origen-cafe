@@ -1,0 +1,41 @@
+---
+import DemoNotice from './DemoNotice.astro';
+
+/** Landing hero (RF-001). All copy is fictitious demonstration content. */
+---
+
+<section class="border-b border-coffee-100 bg-coffee-100/40">
+  <div class="mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 md:grid-cols-2 md:py-16">
+    <div class="flex flex-col gap-4">
+      <p class="text-sm font-medium uppercase tracking-wide text-coffee-500">Café de especialidad (demo)</p>
+      <h1 class="font-display text-3xl leading-tight text-coffee-700 sm:text-4xl">
+        Descubre orígenes ficticios, uno a la vez
+      </h1>
+      <p class="text-coffee-700">
+        Explora un catálogo de demostración con filtros, fichas de detalle y un pedido simulado.
+        Todo el contenido es inventado y se ofrece únicamente como ejemplo.
+      </p>
+      <div>
+        <a
+          href="#catalogo"
+          class="inline-flex items-center rounded-md bg-coffee-700 px-4 py-2 font-medium text-white hover:bg-coffee-900"
+        >
+          Ver el catálogo
+        </a>
+      </div>
+      <DemoNotice />
+    </div>
+
+    <div class="flex items-center justify-center">
+      <!-- Decorative, above the fold: eager by default (not lazy), empty alt. -->
+      <img
+        src="/images/hero.svg"
+        alt=""
+        width="640"
+        height="480"
+        decoding="async"
+        class="h-auto max-w-full"
+      />
+    </div>
+  </div>
+</section>

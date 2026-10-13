@@ -1,0 +1,77 @@
+---
+import DemoNotice from './DemoNotice.astro';
+
+/**
+ * Contact form (RF-008, RNF-003).
+ *
+ * Client-side validation only; nothing is sent to a server. Errors are linked
+ * to their fields via aria-describedby and the success message is announced.
+ */
+---
+
+<section id="contacto" class="mx-auto max-w-3xl scroll-mt-20 px-4 py-12">
+  <div class="flex flex-col gap-2">
+    <h2 class="font-display text-2xl text-coffee-700 sm:text-3xl">Contacto</h2>
+    <p class="text-coffee-700">
+      Formulario de demostración. La validación ocurre en tu navegador y no se envía ningún dato.
+    </p>
+    <DemoNotice />
+  </div>
+
+  <form data-contact-form novalidate class="mt-6 flex flex-col gap-4">
+    <div class="flex flex-col gap-1">
+      <label for="contact-name" class="text-sm font-medium text-coffee-700">Nombre</label>
+      <input
+        id="contact-name"
+        name="name"
+        type="text"
+        autocomplete="name"
+        aria-describedby="contact-name-error"
+        class="rounded border border-coffee-500/40 px-3 py-2 text-coffee-900"
+      />
+      <span id="contact-name-error" data-error-for="name" role="alert" hidden class="text-sm text-accent"></span>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label for="contact-email" class="text-sm font-medium text-coffee-700">Correo electrónico</label>
+      <input
+        id="contact-email"
+        name="email"
+        type="email"
+        autocomplete="email"
+        aria-describedby="contact-email-error"
+        class="rounded border border-coffee-500/40 px-3 py-2 text-coffee-900"
+      />
+      <span id="contact-email-error" data-error-for="email" role="alert" hidden class="text-sm text-accent"></span>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label for="contact-message" class="text-sm font-medium text-coffee-700">Mensaje</label>
+      <textarea
+        id="contact-message"
+        name="message"
+        rows="4"
+        aria-describedby="contact-message-error"
+        class="rounded border border-coffee-500/40 px-3 py-2 text-coffee-900"
+      ></textarea>
+      <span id="contact-message-error" data-error-for="message" role="alert" hidden class="text-sm text-accent"></span>
+    </div>
+
+    <div>
+      <button
+        type="submit"
+        class="rounded-md bg-coffee-700 px-4 py-2 font-medium text-white hover:bg-coffee-900"
+      >
+        Enviar mensaje (demo)
+      </button>
+    </div>
+
+    <p
+      data-contact-success
+      role="status"
+      aria-live="polite"
+      hidden
+      class="rounded-md border border-coffee-500/40 bg-coffee-100/70 px-3 py-2 text-sm text-coffee-700"
+    ></p>
+  </form>
+</section>

@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+/**
+ * User-friendly 404 page (CA-041, CA-042).
+ *
+ * Static Astro emits it as `dist/404.html`, which the host serves for unknown
+ * URLs. The detail route also rewrites unknown ids toward this page.
+ */
+---
+
+<Layout
+  title="Página no encontrada — Origen Café"
+  description="La página que buscas no existe en este sitio de demostración."
+>
+  <section class="mx-auto flex max-w-2xl flex-col items-center gap-4 px-4 py-16 text-center">
+    <h1 class="font-display text-3xl text-coffee-700">Página no encontrada</h1>
+    <p class="text-coffee-700">
+      Esta URL no existe en este sitio de demostración. Vuelve al catálogo para seguir explorando
+      los cafés ficticios.
+    </p>
+    <a
+      href="/#catalogo"
+      class="rounded-md bg-coffee-700 px-4 py-2 font-medium text-white hover:bg-coffee-900"
+    >
+      Volver al catálogo
+    </a>
+  </section>
+</Layout>

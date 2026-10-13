@@ -1,0 +1,78 @@
+---
+import '../styles/global.css';
+import CartDrawer from '../components/CartDrawer.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import OrderSummary from '../components/OrderSummary.astro';
+
+/**
+ * Global layout (DD-11, DD-03).
+ *
+ * Semantic header/main/footer, per-page title/description and basic social
+ * meta, lang="es", the shared island parts (Header, CartDrawer > OrderSummary,
+ * Footer), the `[data-island="cart"]` mount root and the island module script.
+ */
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Origen Café — catálogo de demostración',
+  description = 'Catálogo estático de café de especialidad (contenido ficticio de demostración) con filtros, detalle, pedido simulado y formulario.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#4a2f1a" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="es_CO" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="flex min-h-screen flex-col bg-coffee-50 font-sans text-coffee-900">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-coffee-700 focus:px-4 focus:py-2 focus:text-white"
+    >
+      Saltar al contenido
+    </a>
+
+    <noscript>
+      <p class="bg-coffee-900 px-4 py-2 text-center text-sm text-white">
+        JavaScript está desactivado: el catálogo sigue visible; los filtros, la búsqueda y el pedido
+        simulado requieren JavaScript.
+      </p>
+    </noscript>
+
+    <Header />
+
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <CartDrawer>
+      <OrderSummary />
+    </CartDrawer>
+
+    <div id="island-root" data-island="cart"></div>
+
+    <script>
+      import '../lib/island';
+    </script>
+  </body>
+</html>

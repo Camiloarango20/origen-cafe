@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+/*
+ * Theme tokens for Origen Café (Tailwind v4, no tailwind.config.js).
+ * Demo palette and fonts. No external font is imported (no CDN, no font files,
+ * per the project constraint): the tokens resolve to real system stacks that
+ * are always available, so the declared families actually render.
+ */
+@theme {
+  --color-coffee-50: #faf6f1;
+  --color-coffee-100: #f0e6d9;
+  --color-coffee-500: #7a5230;
+  --color-coffee-700: #4a2f1a;
+  --color-coffee-900: #2a1a0e;
+  --color-accent: #c8102e;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --radius-card: 1rem;
+}
+
+/*
+ * Base adjustments.
+ * - A visible focus ring on every interactive control (RNF-003, DD-09).
+ * - Smooth in-page scrolling for the header navigation anchors.
+ * Tailwind v4 preflight already makes the `hidden` attribute authoritative.
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-coffee-700);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

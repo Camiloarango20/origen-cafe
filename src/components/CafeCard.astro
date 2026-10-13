@@ -1,0 +1,76 @@
+---
+import type { Cafe } from '../lib/types';
+import { formatCop } from '../lib/format';
+import { processLabel, regionLabel, roastLabel } from '../lib/catalog-filters';
+import DemoNotice from './DemoNotice.astro';
+
+/**
+ * Catalog card (RF-001, RF-003, CA-002, DD-15).
+ *
+ * Renders as a list item so the grid can reflow when the shared island hides
+ * filtered cards. Each card shows the café's local, original SVG illustration
+ * with a real `alt`, lazy-loaded below the fold (CA-029, CA-031).
+ */
+interface Props {
+  cafe: Cafe;
+}
+
+const { cafe } = Astro.props;
+---
+
+<li
+  data-cafe-card
+  data-cafe-id={cafe.id}
+  data-region={cafe.region}
+  data-roast={cafe.roast}
+  data-process={cafe.process}
+  class="flex h-full flex-col overflow-hidden rounded-card border border-coffee-100 bg-white shadow-sm"
+>
+  <div class="aspect-[4/3] overflow-hidden bg-coffee-100">
+    <img
+      src={cafe.image ?? '/images/cafe-etiopia-yirgacheffe-demo.svg'}
+      alt={`Ilustración original de demostración de ${cafe.name}.`}
+      width="320"
+      height="240"
+      loading="lazy"
+      decoding="async"
+      class="h-full w-full object-cover"
+    />
+  </div>
+
+  <div class="flex flex-1 flex-col gap-2 p-4">
+    <h3 class="font-display text-lg text-coffee-700">
+      <a class="hover:underline" href={`/cafes/${cafe.id}`}>{cafe.name}</a>
+    </h3>
+
+    <dl class="flex flex-wrap gap-x-3 gap-y-1 text-xs text-coffee-500">
+      <div class="flex gap-1">
+        <dt class="font-medium">Región:</dt>
+        <dd>{regionLabel(cafe.region)}</dd>
+      </div>
+      <div class="flex gap-1">
+        <dt class="font-medium">Tueste:</dt>
+        <dd>{roastLabel(cafe.roast)}</dd>
+      </div>
+      <div class="flex gap-1">
+        <dt class="font-medium">Proceso:</dt>
+        <dd>{processLabel(cafe.process)}</dd>
+      </div>
+    </dl>
+
+    <p class="text-sm text-coffee-500">{cafe.notes.join(' · ')}</p>
+
+    <div class="mt-auto flex flex-col gap-2 pt-2">
+      <p class="text-lg font-semibold text-coffee-900">{formatCop(cafe.priceCop)}</p>
+      <DemoNotice compact />
+      <button
+        type="button"
+        data-add-to-cart
+        data-cafe-id={cafe.id}
+        class="rounded-md bg-coffee-700 px-3 py-2 text-sm font-medium text-white hover:bg-coffee-900"
+      >
+        Agregar al pedido
+      </button>
+    </div>
+  </div>
+</li>
